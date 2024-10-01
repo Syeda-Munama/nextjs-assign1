@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import { EB_Garamond } from "next/font/google"; // Import EB Garamond from Google Fonts
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const ebGaramond = EB_Garamond({
+  subsets: ["latin"],
+  variable: "--font-eb-garamond",
+  weight: ["400", "700"], // Add weights you plan to use
 });
 
 export const metadata: Metadata = {
@@ -25,11 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body style={{ fontFamily: ebGaramond.style.fontFamily, backgroundColor: "white" , color: "black" }}>
+        <Navbar />
         {children}
       </body>
     </html>
   );
 }
+
+
